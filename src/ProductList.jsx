@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import { addToCart } from './CartSlice'
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
@@ -294,7 +295,7 @@ function ProductList({ onHomeClick }) {
           <div className="product-cost">${plant.cost}</div> {/* Display plant cost */}
           <button
             className="product-button"
-            onClick={() => handleAddToCart(plant)} // Handle adding plant to cart
+            onClick={() => addToCart (plant)} // Handle adding plant to cart
           >
             Add to Cart
           </button>
