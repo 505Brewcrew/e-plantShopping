@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
-import { addItem } from './CartSlice';
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
@@ -253,34 +252,7 @@ function ProductList({ onHomeClick }) {
         e.preventDefault();
         setShowCart(false);
     };
-    const [addedToCart, setAddedToCart] = useState({});
 
-    const handleAddToCart = (plant) => {
-      // Update the state to add the selected plant to the cart
-      setAddedToCart((prevCart) => {
-        // Check if the plant is already in the cart
-        if (prevCart[plant.id]) {
-          // If it is, increase the quantity
-          return {
-            ...prevCart,
-            [plant.id]: {
-              ...prevCart[plant.id],
-              quantity: prevCart[plant.id].quantity + 1,
-            },
-          };
-        } else {
-          // If not, add it to the cart with a quantity of 1
-          return {
-            ...prevCart,
-            [plant.id]: {
-              ...plant,
-              quantity: 1,
-            },
-          };
-        }
-      });
-    };
-    
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -303,7 +275,7 @@ function ProductList({ onHomeClick }) {
             </div>
             {!showCart ? (
                 <div className="product-grid">
-                    {plantsArray.map((category, index) => ( // Loop through each category in plantsArray
+  {plantsArray.map((category, index) => ( // Loop through each category in plantsArray
   <div key={index}> {/* Unique key for each category div */}
     <h1>
       <div>{category.category}</div> {/* Display the category name */}
@@ -333,6 +305,7 @@ function ProductList({ onHomeClick }) {
 ))}
 
 
+
                 </div>
             ) : (
                 <CartItem onContinueShopping={handleContinueShopping} />
@@ -341,4 +314,4 @@ function ProductList({ onHomeClick }) {
     );
 }
 
-export default ProductList
+export default ProductList;
